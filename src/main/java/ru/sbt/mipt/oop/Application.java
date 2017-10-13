@@ -1,6 +1,8 @@
 package ru.sbt.mipt.oop;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import static ru.sbt.mipt.oop.SensorEventType.*;
 
@@ -15,15 +17,16 @@ public class Application {
 
     public static void allEventsProcessing(SmartHome smartHome) {
         SensorEvent event = getNextSensorEvent();
+
+        Collection<EventHandler> handlers = new ArrayList<EventHandler>();
+
+        handlers.add(new LightEventProcessing());
+        handlers.add(new DoorEventProcessing());
+
         while (event != null) {
             System.out.println("Got event: " + event);
-            if (event.getType() == LIGHT_ON || event.getType() == LIGHT_OFF) {
-                // событие от источника света
-                ExternalEventsProcessing.lightEvent(smartHome, event);
-            }
-            if (event.getType() == DOOR_OPEN || event.getType() == DOOR_CLOSED) {
-                // событие от двери
-                ExternalEventsProcessing.doorEvent(smartHome, event);
+            for (EventHandler handle : handlers) {
+                handle.handle(smartHome, event);
             }
             event = getNextSensorEvent();
         }
