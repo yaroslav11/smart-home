@@ -22,6 +22,7 @@ public class Application {
 
         handlers.add(new LightEventProcessing());
         handlers.add(new DoorEventProcessing());
+        handlers.add(new AutoEventsProcessing());
 
         while (event != null) {
             System.out.println("Got event: " + event);

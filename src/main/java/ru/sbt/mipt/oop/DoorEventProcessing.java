@@ -12,7 +12,7 @@ public class DoorEventProcessing implements EventHandler{
             for (Door door : room.getDoors()) {
                 if (door.getId().equals(event.getObjectId())) {
                     switchDoor(smartHome, event, room, door);
-                    AutoEventsProcessing.switchOffLightInEmptyHome(smartHome, room);
+//                    AutoEventsProcessing.switchOffLightInEmptyHome(smartHome, room);
                 }
             }
         }

@@ -16,4 +16,8 @@ public class Door {
     public void setOpen(boolean open) {
         isOpen = open;
     }
+
+    public boolean getIsOpen(){
+        return isOpen;
+    }
 }
