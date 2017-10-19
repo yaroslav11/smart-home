@@ -6,7 +6,7 @@ import static ru.sbt.mipt.oop.SensorEventType.DOOR_OPEN;
 public class DoorEventProcessing implements EventHandler{
     @Override
     public void handle(SmartHome smartHome, SensorEvent event) {
-        if (isDoor(event)) return;
+        if (!isDoor(event)) return;
 
         for (Room room : smartHome.getRooms()) {
             for (Door door : room.getDoors()) {
@@ -32,7 +32,7 @@ public class DoorEventProcessing implements EventHandler{
     }
 
     public static boolean isDoor(SensorEvent event) {
-        if ((event.getType() != DOOR_OPEN) &&  (event.getType() != DOOR_CLOSED)){
+        if ((event.getType() == DOOR_OPEN) || (event.getType() == DOOR_CLOSED)){
             return true;
         }
         return false;

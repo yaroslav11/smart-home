@@ -6,7 +6,7 @@ import static ru.sbt.mipt.oop.SensorEventType.LIGHT_ON;
 public class LightEventProcessing implements EventHandler{
     @Override
     public void handle(SmartHome smartHome, SensorEvent event) {
-        if (isLight(event)) return;
+        if (!isLight(event)) return;
 
         for (Room room : smartHome.getRooms()) {
             for (Light light : room.getLights()) {
@@ -28,7 +28,7 @@ public class LightEventProcessing implements EventHandler{
     }
 
     public static boolean isLight(SensorEvent event) {
-        if ((event.getType() != LIGHT_ON) &&  (event.getType() != LIGHT_OFF)){
+        if ((event.getType() == LIGHT_ON) ||  (event.getType() == LIGHT_OFF)){
             return true;
         }
         return false;
