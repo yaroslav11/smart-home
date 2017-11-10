@@ -1,23 +1,29 @@
 package ru.sbt.mipt.oop;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import static ru.sbt.mipt.oop.SensorEventType.*;
 
 public class Application {
 
     public static void main(String... args) throws IOException {
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application.xml");
         SmartHome smartHome = HomeJsonFileReader.read();
-        SensorEventObserver sensorEventObserver = new SensorEventObserver(smartHome);
-//        Collection<EventHandler> handlers = new ArrayList<EventHandler>();
-        configurateHandlers(sensorEventObserver);
+//        SensorEventObserver sensorEventObserver = new SensorEventObserver(smartHome);
+        SensorEventObserver sensorEventObserver = (SensorEventObserver) ctx.getBean("sensorEventObserver");
+//        configurateHandlers(sensorEventObserver);
         sensorEventObserver.runEventCycle();
 
     }
 
     public static void configurateHandlers(SensorEventObserver sensorEventObserver) {
+        List<EventHandler> handlers = new ArrayList<>();
+        sensorEventObserver.setHandlers(handlers);
         sensorEventObserver.addHandler(new LightEventProcessing());
         sensorEventObserver.addHandler(new DoorEventProcessing());
         sensorEventObserver.addHandler(new AutoEventsProcessing());
