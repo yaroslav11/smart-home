@@ -13,7 +13,7 @@ public class Application {
 
     public static void main(String... args) throws IOException {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("application.xml");
-        SmartHome smartHome = HomeJsonFileReader.read();
+//        SmartHome smartHome = HomeJsonFileReader.read();
 //        SensorEventObserver sensorEventObserver = new SensorEventObserver(smartHome);
         SensorEventObserver sensorEventObserver = (SensorEventObserver) ctx.getBean("sensorEventObserver");
 //        configurateHandlers(sensorEventObserver);
