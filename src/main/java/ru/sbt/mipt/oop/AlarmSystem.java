@@ -1,24 +1,30 @@
 package ru.sbt.mipt.oop;
 
-import static ru.sbt.mipt.oop.AlarmSystemStateEnum.OFF;
-import static ru.sbt.mipt.oop.AlarmSystemStateEnum.ON;
-import static ru.sbt.mipt.oop.AlarmSystemStateEnum.WAIT_FOR_PASSWORD;
+public class AlarmSystem implements AlarmSystemState {
 
-public class AlarmSystem {
+    private AlarmSystemState alarmSystem;
 
-    private AlarmSystemStateEnum systemStateEnum = OFF;
+    public AlarmSystem(){
+        alarmSystem = new AlarmSystemStateOff(this);
+    }
 
+    @Override
     public AlarmSystemStateEnum getState() {
-        return systemStateEnum;
+        return alarmSystem.getState();
     }
 
+    @Override
     public void turnOn() {
-        if (systemStateEnum == WAIT_FOR_PASSWORD) return;
-        systemStateEnum = ON;
+        alarmSystem.turnOn();
     }
 
+    @Override
     public void onEvent(SensorEvent sensorEvent) {
-        if(systemStateEnum == OFF) return;
-        systemStateEnum = AlarmSystemStateEnum.WAIT_FOR_PASSWORD;
+        alarmSystem.onEvent(sensorEvent);
     }
+
+    public void setAlarmSystemState(AlarmSystemState newSystemState){
+        this.alarmSystem = newSystemState;
+    }
+
 }
