@@ -18,7 +18,7 @@ import static ru.sbt.mipt.oop.SensorEventType.*;
 
 public class DoorEventProcessingTest {
     @Test
-    public void handle() throws Exception {
+    public void handle() {
         DoorEventProcessing doorEventProcessing = new DoorEventProcessing();
         SmartHome home = new SmartHome();
         String doorId = "1";
@@ -35,11 +35,15 @@ public class DoorEventProcessingTest {
     }
 
     @Test
-    public void checkIsDoor() throws Exception {
-        assertFalse(isDoor(new SensorEvent(LIGHT_ON, "1")));
-        assertFalse(isDoor(new SensorEvent(LIGHT_OFF, "2")));
-        assertTrue(isDoor(new SensorEvent(DOOR_OPEN, "3")));
-        assertTrue(isDoor(new SensorEvent(DOOR_CLOSED, "4")));
+    public void checkIfDoorIsDoor() {
+        assertTrue(isDoor(new SensorEvent(DOOR_OPEN, "Door_1")));
+        assertTrue(isDoor(new SensorEvent(DOOR_CLOSED, "Door_2")));
+    }
+
+    @Test
+    public void checkIfLightIsDoor() {
+        assertFalse(isDoor(new SensorEvent(LIGHT_ON, "Light_1")));
+        assertFalse(isDoor(new SensorEvent(LIGHT_OFF, "Light_2")));
     }
 
 

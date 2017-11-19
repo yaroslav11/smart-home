@@ -11,7 +11,7 @@ import static ru.sbt.mipt.oop.SensorEventType.*;
 
 public class LightEventProcessingTest {
     @Test
-    public void handle() throws Exception {
+    public void handle(){
         LightEventProcessing lightEventProcessing = new LightEventProcessing();
         SmartHome home = new SmartHome();
         String lightId = "1";
@@ -24,10 +24,14 @@ public class LightEventProcessingTest {
     }
 
     @Test
-    public void checkIsLight() throws Exception{
-        assertTrue(isLight(new SensorEvent(LIGHT_ON, "1")));
-        assertTrue(isLight(new SensorEvent(LIGHT_OFF, "2")));
-        assertFalse(isLight(new SensorEvent(DOOR_OPEN, "3")));
-        assertFalse(isLight(new SensorEvent(DOOR_CLOSED, "4")));
+    public void checkIfLightIsLight() {
+        assertTrue(isLight(new SensorEvent(LIGHT_ON, "Light_1")));
+        assertTrue(isLight(new SensorEvent(LIGHT_OFF, "Light_2")));
+    }
+
+    @Test
+    public void checkIfDoorIsLight() {
+        assertFalse(isLight(new SensorEvent(DOOR_OPEN, "Door_1")));
+        assertFalse(isLight(new SensorEvent(DOOR_CLOSED, "Door_2")));
     }
 }

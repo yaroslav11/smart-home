@@ -28,10 +28,7 @@ public class LightEventProcessing implements EventHandler{
     }
 
     public static boolean isLight(SensorEvent event) {
-        if ((event.getType() == LIGHT_ON) ||  (event.getType() == LIGHT_OFF)){
-            return true;
-        }
-        return false;
+        return  ((event.getType() == LIGHT_ON) ||  (event.getType() == LIGHT_OFF));
     }
 
 }

@@ -18,12 +18,13 @@ import static ru.sbt.mipt.oop.SensorEventType.LIGHT_ON;
 
 public class AutoEventsProcessingTest {
     @Test
-    public void handleNormal() throws Exception {
+    public void handleNormal() {
         AutoEventsProcessing autoEventsProcessing = new AutoEventsProcessing();
         SmartHome home = new SmartHome();
 
         String lightId = "1";
         Light light = new Light(lightId, true);
+        
         String doorId = "1";
         Door door = new Door(true, doorId);
 
@@ -37,12 +38,13 @@ public class AutoEventsProcessingTest {
     }
 
     @Test
-    public void handleWrongRoom() throws Exception {
+    public void handleWrongRoom() {
         AutoEventsProcessing autoEventsProcessing = new AutoEventsProcessing();
         SmartHome home = new SmartHome();
 
         String lightId = "1";
         Light light = new Light(lightId, true);
+
         String doorId = "1";
         Door door = new Door(true, doorId);
 
@@ -56,12 +58,13 @@ public class AutoEventsProcessingTest {
     }
 
     @Test
-    public void handleWrongAction() throws Exception {
+    public void handleWrongAction() {
         AutoEventsProcessing autoEventsProcessing = new AutoEventsProcessing();
         SmartHome home = new SmartHome();
 
         String lightId = "1";
         Light light = new Light(lightId, true);
+
         String doorId = "1";
         Door door = new Door(true, doorId);
 

@@ -32,9 +32,6 @@ public class DoorEventProcessing implements EventHandler{
     }
 
     public static boolean isDoor(SensorEvent event) {
-        if ((event.getType() == DOOR_OPEN) || (event.getType() == DOOR_CLOSED)){
-            return true;
-        }
-        return false;
+        return  ((event.getType() == DOOR_OPEN) || (event.getType() == DOOR_CLOSED));
     }
 }
