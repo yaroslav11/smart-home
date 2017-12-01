@@ -31,4 +31,13 @@ public class LightEventProcessing implements EventHandler{
         return  ((event.getType() == LIGHT_ON) ||  (event.getType() == LIGHT_OFF));
     }
 
+    public void TurnOffHomeLights(SmartHome smartHome){
+        smartHome.executeAction(obj ->{
+            if (obj instanceof Light){
+                Light light = (Light)obj;
+                light.setOn(false);
+            }
+        });
+    }
+
 }

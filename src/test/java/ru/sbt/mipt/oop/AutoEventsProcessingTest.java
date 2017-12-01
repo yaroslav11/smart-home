@@ -24,7 +24,7 @@ public class AutoEventsProcessingTest {
 
         String lightId = "1";
         Light light = new Light(lightId, true);
-        
+
         String doorId = "1";
         Door door = new Door(true, doorId);
 
