@@ -35,5 +35,7 @@ public class Room implements Actionable{
         for (Light light: getLights()){
             light.executeAction(action);
         }
+
+        action.execute(this);
     }
 }

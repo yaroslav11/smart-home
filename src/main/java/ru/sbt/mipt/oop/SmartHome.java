@@ -30,5 +30,7 @@ public class SmartHome implements Actionable{
         for (Room room: getRooms()){
             room.executeAction(action);
         }
+
+        action.execute(this);
     }
 }
