@@ -2,8 +2,10 @@ package ru.sbt.mipt.oop;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static ru.sbt.mipt.oop.LightEventProcessing.isLight;
@@ -11,7 +13,7 @@ import static ru.sbt.mipt.oop.SensorEventType.*;
 
 public class LightEventProcessingTest {
     @Test
-    public void handle(){
+    public void checkHandle(){
         LightEventProcessing lightEventProcessing = new LightEventProcessing();
         SmartHome home = new SmartHome();
         String lightId = "1";
@@ -33,5 +35,21 @@ public class LightEventProcessingTest {
     public void checkIfDoorIsLight() {
         assertFalse(isLight(new SensorEvent(DOOR_OPEN, "Door_1")));
         assertFalse(isLight(new SensorEvent(DOOR_CLOSED, "Door_2")));
+    }
+
+    @Test
+    public void checkTurnOffHomeLights(){
+        LightEventProcessing lightEventProcessing = new LightEventProcessing();
+        SmartHome home = new SmartHome();
+        List<Light> lights = Arrays.asList(
+                new Light("1", true),
+                new Light("2", true),
+                new Light("3", false)
+        );
+        home.addRoom(new Room(lights, Collections.emptyList(), "room"));
+        lightEventProcessing.turnOffHomeLights(home);
+        for (Light light: lights){
+            assertFalse(light.isOn());
+        }
     }
 }

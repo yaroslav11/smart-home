@@ -16,8 +16,10 @@ public class Application {
 //        SmartHome smartHome = HomeJsonFileReader.read();
 //        SensorEventObserver sensorEventObserver = new SensorEventObserver(smartHome);
         SensorEventObserver sensorEventObserver = (SensorEventObserver) ctx.getBean("sensorEventObserver");
+        AlarmSystemState alarmSystemState = (AlarmSystemState) ctx.getBean("alarmSystem");
 //        configurateHandlers(sensorEventObserver);
         sensorEventObserver.runEventCycle();
+
 
     }
 

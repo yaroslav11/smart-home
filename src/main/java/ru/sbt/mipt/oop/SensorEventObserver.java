@@ -17,10 +17,8 @@ public class SensorEventObserver {
     public void runEventCycle(){
         SensorEvent event = getNextSensorEvent();
         while (event != null) {
-            System.out.println("Got event: " + event);
-            for (EventHandler handle : eventHandlers) {
-                handle.handle(smartHome, event);
-            }
+
+            EventProcessor.sensorEventProcessor(event, eventHandlers, smartHome);
             event = getNextSensorEvent();
         }
     }

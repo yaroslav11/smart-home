@@ -21,5 +21,9 @@
         </property>
     </bean>
 
+    <bean id="alarmSystem" class="ru.sbt.mipt.oop.AlarmSystemState">
+        <constructor-arg index="0" type="int" value= "1234"/>
+    </bean>
+
 
 </beans>

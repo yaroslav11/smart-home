@@ -1,9 +1,37 @@
 package ru.sbt.mipt.oop;
 
-public interface AlarmSystemState {
-    AlarmSystemStateEnum getState();
+public class AlarmSystemState implements AlarmSystem {
 
-    void turnOn();
+    private AlarmSystem alarmSystem;
+    private int password;
 
-    void onEvent(SensorEvent sensorEvent);
+    public AlarmSystemState(int password){
+        alarmSystem = new AlarmSystemOff(this, password);
+        this.password = password;
+    }
+
+    @Override
+    public AlarmSystemStateEnum getState() {
+        return alarmSystem.getState();
+    }
+
+    @Override
+    public void turnOn() {
+        alarmSystem.turnOn();
+    }
+
+    @Override
+    public void enterPassword(int pinCode) {
+        alarmSystem.enterPassword(pinCode);
+    }
+
+    @Override
+    public void onEvent(SensorEvent sensorEvent) {
+        alarmSystem.onEvent(sensorEvent);
+    }
+
+    public void setAlarmSystemState(AlarmSystem newSystemState){
+        this.alarmSystem = newSystemState;
+    }
+
 }
