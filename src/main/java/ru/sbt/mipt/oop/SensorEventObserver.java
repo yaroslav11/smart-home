@@ -18,7 +18,7 @@ public class SensorEventObserver {
         SensorEvent event = getNextSensorEvent();
         while (event != null) {
 
-            EventProcessor.sensorEventProcessor(event, eventHandlers, smartHome);
+            EventProcessorDecorators.securedSensorEventProcessor(eventHandlers, event);
             event = getNextSensorEvent();
         }
     }
