@@ -1,5 +1,10 @@
 package ru.sbt.mipt.oop;
 import org.junit.Test;
+import ru.sbt.mipt.oop.entities.Door;
+import ru.sbt.mipt.oop.entities.Light;
+import ru.sbt.mipt.oop.entities.Room;
+import ru.sbt.mipt.oop.entities.SmartHome;
+
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;

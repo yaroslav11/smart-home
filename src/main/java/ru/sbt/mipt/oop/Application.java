@@ -1,13 +1,16 @@
 package ru.sbt.mipt.oop;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ru.sbt.mipt.oop.entities.alarm.AlarmSystemState;
+import ru.sbt.mipt.oop.utilities.*;
+import ru.sbt.mipt.oop.utilities.processors.AutoEventsProcessing;
+import ru.sbt.mipt.oop.utilities.processors.DoorEventProcessing;
+import ru.sbt.mipt.oop.utilities.processors.EventHandler;
+import ru.sbt.mipt.oop.utilities.processors.LightEventProcessing;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-
-import static ru.sbt.mipt.oop.SensorEventType.*;
 
 public class Application {
 
@@ -22,7 +25,7 @@ public class Application {
 
 
     }
-
+/*
     public static void configurateHandlers(SensorEventObserver sensorEventObserver) {
         List<EventHandler> handlers = new ArrayList<>();
         sensorEventObserver.setHandlers(handlers);
@@ -30,16 +33,10 @@ public class Application {
         sensorEventObserver.addHandler(new DoorEventProcessing());
         sensorEventObserver.addHandler(new AutoEventsProcessing());
     }
+*/
 
-    static void sendCommand(SensorCommand command) {
+    public static void sendCommand(SensorCommand command) {
         System.out.println("Pretent we're sending command " + command);
     }
 
-    static SensorEvent getNextSensorEvent() {
-        // pretend like we're getting the events from physical world, but here we're going to just generate some random events
-        if (Math.random() < 0.05) return null; // null means end of event stream
-        SensorEventType sensorEventType = SensorEventType.values()[(int) (4 * Math.random())];
-        String objectId = "" + ((int) (10 * Math.random()));
-        return new SensorEvent(sensorEventType, objectId);
-    }
 }

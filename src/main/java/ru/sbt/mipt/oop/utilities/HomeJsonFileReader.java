@@ -1,6 +1,7 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.utilities;
 
 import com.google.gson.Gson;
+import ru.sbt.mipt.oop.entities.SmartHome;
 
 import java.io.IOException;
 import java.nio.file.Files;

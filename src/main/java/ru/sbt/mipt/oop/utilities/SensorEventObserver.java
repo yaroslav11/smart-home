@@ -1,20 +1,24 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.utilities;
+
+import ru.sbt.mipt.oop.entities.SmartHome;
+import ru.sbt.mipt.oop.utilities.processors.EventHandler;
+import ru.sbt.mipt.oop.utilities.processors.EventProcessorDecorators;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static ru.sbt.mipt.oop.Application.getNextSensorEvent;
+import static ru.sbt.mipt.oop.utilities.processors.ExternalEventsProcessing.getNextSensorEvent;
 
 public class SensorEventObserver {
     private Collection<EventHandler> eventHandlers = new ArrayList<>();
     private SmartHome smartHome;
 
-    public SensorEventObserver(SmartHome smartHome){
+    public SensorEventObserver(SmartHome smartHome) {
         this.smartHome = smartHome;
     }
 
-    public void runEventCycle(){
+    public void runEventCycle() {
         SensorEvent event = getNextSensorEvent();
         while (event != null) {
 
@@ -23,7 +27,7 @@ public class SensorEventObserver {
         }
     }
 
-    public void addHandler(EventHandler eventHandler){
+    public void addHandler(EventHandler eventHandler) {
         eventHandlers.add(eventHandler);
     }
 

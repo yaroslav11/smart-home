@@ -1,4 +1,6 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.entities.alarm;
+
+import ru.sbt.mipt.oop.utilities.SensorEvent;
 
 public class AlarmSystemState implements AlarmSystem {
 

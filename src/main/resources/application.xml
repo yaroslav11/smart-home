@@ -3,14 +3,14 @@
 
 <beans>
     <!-- Event handlers-->
-    <bean id="lightEventProcessing" class="ru.sbt.mipt.oop.LightEventProcessing"/>
-    <bean id="doorEventProcessing" class="ru.sbt.mipt.oop.DoorEventProcessing"/>
-    <bean id="autoEventsProcessing" class="ru.sbt.mipt.oop.AutoEventsProcessing"/>
+    <bean id="lightEventProcessing" class="ru.sbt.mipt.oop.utilities.processors.LightEventProcessing"/>
+    <bean id="doorEventProcessing" class="ru.sbt.mipt.oop.utilities.processors.DoorEventProcessing"/>
+    <bean id="autoEventsProcessing" class="ru.sbt.mipt.oop.utilities.processors.AutoEventsProcessing"/>
 
     <!-- Event producers-->
-    <bean id="smartHome" class="ru.sbt.mipt.oop.HomeJsonFileReader" factory-method="read"/>
+    <bean id="smartHome" class="ru.sbt.mipt.oop.utilities.HomeJsonFileReader" factory-method="read"/>
 
-    <bean id="sensorEventObserver" class="ru.sbt.mipt.oop.SensorEventObserver" >
+    <bean id="sensorEventObserver" class="ru.sbt.mipt.oop.utilities.SensorEventObserver" >
         <constructor-arg index="0" ref="smartHome"/>
         <property name="handlers">
             <list>
@@ -21,11 +21,11 @@
         </property>
     </bean>
 
-    <bean id="alarmSystem" class="ru.sbt.mipt.oop.AlarmSystemState">
+    <bean id="alarmSystem" class="ru.sbt.mipt.oop.entities.alarm.AlarmSystemState">
         <constructor-arg index="0" type="int" value= "1234"/>
     </bean>
 
-    <bean id="eventProcessor" class="ru.sbt.mipt.oop.EventProcessor">
+    <bean id="eventProcessor" class="ru.sbt.mipt.oop.utilities.processors.EventProcessor">
         <constructor-arg index="0" ref="smartHome"/>
         <constructor-arg index="1" ref="alarmSystem"/>
     </bean>

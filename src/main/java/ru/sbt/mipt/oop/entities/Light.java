@@ -1,6 +1,6 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.entities;
 
-public class Light implements Actionable{
+public class Light implements Actionable {
     private boolean isOn;
     private final String id;
 

@@ -2,13 +2,19 @@ package ru.sbt.mipt.oop;
 
 import org.junit.Before;
 import org.junit.Test;
+import ru.sbt.mipt.oop.entities.Light;
+import ru.sbt.mipt.oop.entities.Room;
+import ru.sbt.mipt.oop.entities.SmartHome;
+import ru.sbt.mipt.oop.entities.alarm.AlarmSystemState;
+import ru.sbt.mipt.oop.utilities.processors.EventProcessor;
+import ru.sbt.mipt.oop.utilities.processors.LightEventProcessing;
+import ru.sbt.mipt.oop.utilities.SensorEvent;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
 import static org.junit.Assert.*;
-import static ru.sbt.mipt.oop.SensorEventType.LIGHT_ON;
+import static ru.sbt.mipt.oop.utilities.SensorEventType.LIGHT_ON;
 
 public class EventProcessorTest {
     SmartHome home;

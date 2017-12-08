@@ -1,15 +1,19 @@
 package ru.sbt.mipt.oop;
 
 import org.junit.Test;
+import ru.sbt.mipt.oop.entities.Light;
+import ru.sbt.mipt.oop.entities.Room;
+import ru.sbt.mipt.oop.entities.SmartHome;
+import ru.sbt.mipt.oop.utilities.processors.LightEventProcessing;
+import ru.sbt.mipt.oop.utilities.SensorEvent;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static ru.sbt.mipt.oop.LightEventProcessing.isLight;
-import static ru.sbt.mipt.oop.SensorEventType.*;
+import static ru.sbt.mipt.oop.utilities.processors.LightEventProcessing.isLight;
+import static ru.sbt.mipt.oop.utilities.SensorEventType.*;
 
 public class LightEventProcessingTest {
     @Test

@@ -1,10 +1,14 @@
 package ru.sbt.mipt.oop;
 
 import org.junit.Test;
+import ru.sbt.mipt.oop.entities.alarm.AlarmSystemState;
+import ru.sbt.mipt.oop.entities.alarm.AlarmSystemStateEnum;
+import ru.sbt.mipt.oop.utilities.SensorEvent;
+import ru.sbt.mipt.oop.utilities.SensorEventType;
 
 import static org.junit.Assert.assertEquals;
 
-public class AlarmSystem1Test {
+public class AlarmSystemTest {
     @Test
     public void testNewSystemIsOff(){
         AlarmSystemState alarmSystemState = new AlarmSystemState(1234);

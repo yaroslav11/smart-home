@@ -1,20 +1,19 @@
 package ru.sbt.mipt.oop;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import ru.sbt.mipt.oop.entities.Door;
+import ru.sbt.mipt.oop.entities.Light;
+import ru.sbt.mipt.oop.entities.Room;
+import ru.sbt.mipt.oop.entities.SmartHome;
+import ru.sbt.mipt.oop.utilities.processors.DoorEventProcessing;
+import ru.sbt.mipt.oop.utilities.SensorEvent;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import static org.junit.Assert.*;
-import static ru.sbt.mipt.oop.DoorEventProcessing.isDoor;
-import static ru.sbt.mipt.oop.LightEventProcessing.isLight;
-import static ru.sbt.mipt.oop.SensorEventType.*;
+import static ru.sbt.mipt.oop.utilities.processors.DoorEventProcessing.isDoor;
+import static ru.sbt.mipt.oop.utilities.SensorEventType.*;
 
 public class DoorEventProcessingTest {
     @Test

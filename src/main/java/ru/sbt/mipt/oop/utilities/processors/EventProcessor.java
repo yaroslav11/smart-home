@@ -1,13 +1,16 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.utilities.processors;
 
-import java.util.ArrayList;
+import ru.sbt.mipt.oop.entities.SmartHome;
+import ru.sbt.mipt.oop.entities.alarm.AlarmSystem;
+import ru.sbt.mipt.oop.utilities.SensorEvent;
+
 import java.util.Collection;
 
 public class EventProcessor {
     private static SmartHome smartHome;
     private static AlarmSystem alarmSystemState;
 
-    protected EventProcessor(SmartHome smartHome, AlarmSystem alarmSystemState){
+    public EventProcessor(SmartHome smartHome, AlarmSystem alarmSystemState){
         this.smartHome = smartHome;
         this.alarmSystemState = alarmSystemState;
     }

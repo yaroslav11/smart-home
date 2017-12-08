@@ -1,7 +1,12 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.utilities.processors;
 
-import static ru.sbt.mipt.oop.SensorEventType.DOOR_CLOSED;
-import static ru.sbt.mipt.oop.SensorEventType.DOOR_OPEN;
+import ru.sbt.mipt.oop.entities.Door;
+import ru.sbt.mipt.oop.entities.Room;
+import ru.sbt.mipt.oop.entities.SmartHome;
+import ru.sbt.mipt.oop.utilities.SensorEvent;
+
+import static ru.sbt.mipt.oop.utilities.SensorEventType.DOOR_CLOSED;
+import static ru.sbt.mipt.oop.utilities.SensorEventType.DOOR_OPEN;
 
 public class AutoEventsProcessing implements EventHandler {
     @Override

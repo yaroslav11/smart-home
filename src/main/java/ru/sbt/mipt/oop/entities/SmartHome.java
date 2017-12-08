@@ -1,11 +1,9 @@
-package ru.sbt.mipt.oop;
-
-import com.sun.javafx.scene.control.skin.VirtualFlow;
+package ru.sbt.mipt.oop.entities;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SmartHome implements Actionable{
+public class SmartHome implements Actionable {
     Collection<Room> rooms;
 
     public SmartHome() {
