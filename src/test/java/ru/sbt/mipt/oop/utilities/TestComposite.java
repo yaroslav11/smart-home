@@ -1,4 +1,4 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.utilities;
 import org.junit.Test;
 import ru.sbt.mipt.oop.entities.Door;
 import ru.sbt.mipt.oop.entities.Light;

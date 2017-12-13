@@ -1,7 +1,8 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.utilities;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.sbt.mipt.oop.entities.Light;
 import ru.sbt.mipt.oop.entities.Room;
 import ru.sbt.mipt.oop.entities.SmartHome;
@@ -22,6 +23,10 @@ public class EventProcessorTest {
     Light light;
     EventProcessor eventProcessor;
 
+    int password = (int)
+            (new ClassPathXmlApplicationContext("application.xml")
+                    .getBean("rightPassword"));
+
     @Before
     public void init(){
         home = new SmartHome();
@@ -41,9 +46,9 @@ public class EventProcessorTest {
         assertTrue(light.isOn());
     }
 
-    @Test(timeout = 1)
+    @Test
     public void alarmEventProcessor() throws Exception {
-        eventProcessor = new EventProcessor(home, new AlarmSystemState(0000));
+        eventProcessor = new EventProcessor(home, new AlarmSystemState(password));
         EventProcessor.alarmEventProcessor(event);
     }
 

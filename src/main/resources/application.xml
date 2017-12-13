@@ -21,14 +21,19 @@
         </property>
     </bean>
 
+    <bean id="rightPassword" class="java.lang.Integer">
+        <constructor-arg type="int" value="1234"/>
+    </bean>
+
     <bean id="alarmSystem" class="ru.sbt.mipt.oop.entities.alarm.AlarmSystemState">
-        <constructor-arg index="0" type="int" value= "1234"/>
+        <constructor-arg index="0" type="int" ref="rightPassword"/>
     </bean>
 
     <bean id="eventProcessor" class="ru.sbt.mipt.oop.utilities.processors.EventProcessor">
         <constructor-arg index="0" ref="smartHome"/>
         <constructor-arg index="1" ref="alarmSystem"/>
     </bean>
+
 
 
 </beans>

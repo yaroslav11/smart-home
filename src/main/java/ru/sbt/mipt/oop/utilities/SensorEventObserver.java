@@ -27,9 +27,9 @@ public class SensorEventObserver {
         }
     }
 
-    public void addHandler(EventHandler eventHandler) {
-        eventHandlers.add(eventHandler);
-    }
+//    public void addHandler(EventHandler eventHandler) {
+//        eventHandlers.add(eventHandler);
+//    }
 
     public void setHandlers(List<EventHandler> handlers) {
         this.eventHandlers = handlers;

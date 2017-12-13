@@ -2,32 +2,32 @@ package ru.sbt.mipt.oop.entities.alarm;
 
 import ru.sbt.mipt.oop.utilities.SensorEvent;
 
-public class AlarmSystemOff implements AlarmSystem {
+public class AlarmSystemStateOn implements AlarmSystem {
     private final AlarmSystemState alarmSystemState;
     private int password;
 
-    public AlarmSystemOff(AlarmSystemState system, int password) {
+    public AlarmSystemStateOn(AlarmSystemState system, int password) {
         alarmSystemState =system;
         this.password = password;
     }
 
     @Override
     public AlarmSystemStateEnum getState() {
-        return AlarmSystemStateEnum.OFF;
+        return AlarmSystemStateEnum.ON;
     }
 
     @Override
     public void turnOn() {
-        alarmSystemState.setAlarmSystemState(new AlarmSystemOn(alarmSystemState, password));
+        return;
     }
 
     @Override
-    public void enterPassword() {
+    public void enterPassword(int pinCode) {
         return;
     }
 
     @Override
     public void onEvent(SensorEvent sensorEvent) {
-        return;
+        alarmSystemState.setAlarmSystemState(new AlarmSystemStateWaitForPassword(alarmSystemState, password));
     }
 }

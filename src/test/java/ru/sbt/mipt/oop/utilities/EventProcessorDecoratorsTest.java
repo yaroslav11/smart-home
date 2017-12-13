@@ -1,6 +1,7 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.utilities;
 
 import org.junit.Test;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.sbt.mipt.oop.entities.Light;
 import ru.sbt.mipt.oop.entities.Room;
 import ru.sbt.mipt.oop.entities.SmartHome;
@@ -16,7 +17,11 @@ import static org.junit.Assert.*;
 import static ru.sbt.mipt.oop.utilities.SensorEventType.LIGHT_ON;
 
 public class EventProcessorDecoratorsTest {
-    @Test(timeout = 100)
+    int password = (int)
+            (new ClassPathXmlApplicationContext("application.xml")
+                    .getBean("rightPassword"));
+
+    @Test(timeout = 5000)
     public void securedSensorEventProcessor() throws Exception {
         SmartHome home = new SmartHome();
 
@@ -28,7 +33,7 @@ public class EventProcessorDecoratorsTest {
         SensorEvent event = new SensorEvent(LIGHT_ON, lightId);
 
         EventProcessorDecorators eventProcessorDecorator =
-                new EventProcessorDecorators(home, new AlarmSystemState(0000));
+                new EventProcessorDecorators(home, new AlarmSystemState(password));
         eventProcessorDecorator.securedSensorEventProcessor(Arrays.asList(new LightEventProcessing()), event);
 
         assertTrue(light.isOn());

@@ -8,7 +8,7 @@ public class AlarmSystemState implements AlarmSystem {
     private int password;
 
     public AlarmSystemState(int password){
-        alarmSystem = new AlarmSystemOff(this, password);
+        alarmSystem = new AlarmSystemStateOff(this, password);
         this.password = password;
     }
 
@@ -23,8 +23,8 @@ public class AlarmSystemState implements AlarmSystem {
     }
 
     @Override
-    public void enterPassword() {
-        alarmSystem.enterPassword();
+    public void enterPassword(int pinCode) {
+        alarmSystem.enterPassword(pinCode);
     }
 
     @Override

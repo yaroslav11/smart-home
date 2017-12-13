@@ -22,7 +22,7 @@ public class AlarmSystemStateAlarm implements AlarmSystem {
     }
 
     @Override
-    public void enterPassword() {
+    public void enterPassword(int pinCode) {
         return;
     }
 

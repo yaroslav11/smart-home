@@ -5,6 +5,6 @@ import ru.sbt.mipt.oop.utilities.SensorEvent;
 public interface AlarmSystem {
     AlarmSystemStateEnum getState();
     void turnOn();
-    void enterPassword();
+    void enterPassword(int pinCode);
     void onEvent(SensorEvent sensorEvent);
 }

@@ -2,14 +2,12 @@ package ru.sbt.mipt.oop.entities.alarm;
 
 import ru.sbt.mipt.oop.utilities.SensorEvent;
 
-import java.util.Scanner;
-
-public class AlarmSystemWaitForPassword implements AlarmSystem {
+public class AlarmSystemStateWaitForPassword implements AlarmSystem {
     private final AlarmSystemState alarmSystemState;
     private int password;
     private static int wrongAttemptsNumber =0;
 
-    public AlarmSystemWaitForPassword(AlarmSystemState system, int password) {
+    public AlarmSystemStateWaitForPassword(AlarmSystemState system, int password) {
         alarmSystemState =system;
         this.password = password;
     }
@@ -25,15 +23,17 @@ public class AlarmSystemWaitForPassword implements AlarmSystem {
     }
 
     @Override
-    public void enterPassword() {
-        Scanner in = new Scanner(System.in);
-        int pinCode = in.nextInt();
+    public void enterPassword(int pinCode) {
+//        Scanner in = new Scanner(System.in);
+//        int pinCode = in.nextInt();
         boolean rightPassword = (pinCode == password);
         if(!rightPassword){
             if (++wrongAttemptsNumber >= 3){
                 wrongAttemptsNumber = 0;
                 alarmSystemState.setAlarmSystemState(new AlarmSystemStateAlarm(alarmSystemState, password));
             }
+        }else{
+            alarmSystemState.setAlarmSystemState(new AlarmSystemStateOff(alarmSystemState, password));
         }
     }
 
