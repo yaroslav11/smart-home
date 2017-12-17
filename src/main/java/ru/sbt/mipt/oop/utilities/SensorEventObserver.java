@@ -11,8 +11,8 @@ import java.util.List;
 import static ru.sbt.mipt.oop.utilities.processors.ExternalEventsProcessing.getNextSensorEvent;
 
 public class SensorEventObserver {
-    private Collection<EventHandler> eventHandlers = new ArrayList<>();
-    private SmartHome smartHome;
+    Collection<EventHandler> eventHandlers = new ArrayList<>();
+    SmartHome smartHome;
 
     public SensorEventObserver(SmartHome smartHome) {
         this.smartHome = smartHome;
