@@ -5,6 +5,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import ru.sbt.mipt.oop.entities.Light;
 import ru.sbt.mipt.oop.entities.SmartHome;
+import ru.sbt.mipt.oop.entities.alarm.AlarmSystemState;
 import ru.sbt.mipt.oop.utilities.processors.*;
 
 import java.util.ArrayList;
@@ -33,7 +34,6 @@ public class SensorEventObserverTest {
     @Test
     public void runEventCycle(){
         SensorEvent lightEvent = new SensorEvent(SensorEventType.LIGHT_OFF, "1");
-        SensorEvent doorEvent = new SensorEvent(SensorEventType.DOOR_OPEN, "2");
 
         EventHandler lightHandler = mock(LightEventProcessing.class);
         EventHandler doorHandler = mock(DoorEventProcessing.class);
@@ -41,12 +41,11 @@ public class SensorEventObserverTest {
 
         this.sensorEventObserver.setHandlers(Arrays.asList(lightHandler, doorHandler, autoHandler));
 
-//        this.sensorEventObserver.runEventCycle();
-        EventProcessorDecorators.securedSensorEventProcessor(sensorEventObserver.eventHandlers, lightEvent);
+        (new EventProcessorDecorators(this.smartHome, new AlarmSystemState(9876)))
+                .securedSensorEventProcessor(sensorEventObserver.eventHandlers, lightEvent);
         verify(lightHandler).handle(any(SmartHome.class), eq(lightEvent));
-
-        EventProcessorDecorators.securedSensorEventProcessor(sensorEventObserver.eventHandlers, doorEvent);
-        verify(doorHandler).handle(any(SmartHome.class), eq(doorEvent));
+        verify(doorHandler).handle(any(SmartHome.class), eq(lightEvent));
+        verify(autoHandler).handle(any(SmartHome.class), eq(lightEvent));
 
     }
 
