@@ -5,15 +5,14 @@ import org.junit.Ignore;
 import org.junit.Test;
 import ru.sbt.mipt.oop.entities.Light;
 import ru.sbt.mipt.oop.entities.SmartHome;
-import ru.sbt.mipt.oop.utilities.processors.AutoEventsProcessing;
-import ru.sbt.mipt.oop.utilities.processors.DoorEventProcessing;
-import ru.sbt.mipt.oop.utilities.processors.EventHandler;
-import ru.sbt.mipt.oop.utilities.processors.LightEventProcessing;
+import ru.sbt.mipt.oop.utilities.processors.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class SensorEventObserverTest {
     SmartHome smartHome;
@@ -31,6 +30,25 @@ public class SensorEventObserverTest {
         assertEquals(this.smartHome, this.sensorEventObserver.smartHome);
     }
 
+    @Test
+    public void runEventCycle(){
+        SensorEvent lightEvent = new SensorEvent(SensorEventType.LIGHT_OFF, "1");
+        SensorEvent doorEvent = new SensorEvent(SensorEventType.DOOR_OPEN, "2");
+
+        EventHandler lightHandler = mock(LightEventProcessing.class);
+        EventHandler doorHandler = mock(DoorEventProcessing.class);
+        EventHandler autoHandler = mock(AutoEventsProcessing.class);
+
+        this.sensorEventObserver.setHandlers(Arrays.asList(lightHandler, doorHandler, autoHandler));
+
+//        this.sensorEventObserver.runEventCycle();
+        EventProcessorDecorators.securedSensorEventProcessor(sensorEventObserver.eventHandlers, lightEvent);
+        verify(lightHandler).handle(any(SmartHome.class), eq(lightEvent));
+
+        EventProcessorDecorators.securedSensorEventProcessor(sensorEventObserver.eventHandlers, doorEvent);
+        verify(doorHandler).handle(any(SmartHome.class), eq(doorEvent));
+
+    }
 
     @Test
     public void setHandlers() throws Exception {
